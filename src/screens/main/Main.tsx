@@ -1,9 +1,12 @@
-import React from 'react'
+import Container from "../../components/container/Container";
 
 const Main = () => {
   return (
-    <div className='inline-block'>Main</div>
-  )
-}
+    <Container>
+      <h1>main</h1>
+      <button>clickxd</button>
+    </Container>
+  );
+};
 
-export default Main
+export default Main;
