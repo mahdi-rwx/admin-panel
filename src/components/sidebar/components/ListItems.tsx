@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiOutlineRight } from "react-icons/ai";
 
 const ListItems = ({ item }: any) => {
@@ -30,10 +30,14 @@ const ListItems = ({ item }: any) => {
       </div>
       {item.sub && (
         <div
-          className={classNames("sub-list duration-300", {
-            "h-auto opacity-100 block": subOpen,
-            " h-0 opacity-0 hidden duration-300": !subOpen,
-          })}
+          style={{ height: `${subOpen ? "50px" : "0"}` }}
+          className={classNames(
+            "sub-list duration-300 min-h-0 transition-all",
+            {
+              "h-auto visible": subOpen,
+              " h-0 invisible": !subOpen,
+            }
+          )}
         >
           <ul className="mx-3">
             {item.sub.map((i: any) => {

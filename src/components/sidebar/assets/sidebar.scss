@@ -1,0 +1,11 @@
+.sidebar {
+  &::-webkit-scrollbar-thumb{
+    display: none;
+  }
+  &::-webkit-scrollbar{
+    display: none;
+  }
+  &:hover {
+    width: 250px !important;
+  }
+}

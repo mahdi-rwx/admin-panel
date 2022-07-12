@@ -3,12 +3,12 @@ import { sidebarData } from "../../data/sidebar";
 import HeadSidebar from "./components/HeadSidebar";
 import ListItems from "./components/ListItems";
 import { SidebarContext } from "./context/SidebarContext";
-
+import "./assets/sidebar.scss";
 const Sidebar = () => {
   const { isOpenSidebar } = useContext(SidebarContext);
   return (
     <div
-      className="sidebar h-screen overflow-y-auto overflow-x-hidden inline-block bg-slate-800 fixed z-50 transition-all"
+      className="sidebar h-screen overflow-y-auto overflow-x-hidden inline-block bg-slate-800 fixed z-50 transition-all select-none"
       style={{ width: `${isOpenSidebar ? "250px" : "90px"}` }}
     >
       <HeadSidebar />
