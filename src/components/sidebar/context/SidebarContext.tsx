@@ -1,5 +1,5 @@
 import { createContext, ReactNode } from "react";
-interface IContextValues {
+export interface IContextValues {
   isOpen: boolean;
   toggle: () => void;
 }
