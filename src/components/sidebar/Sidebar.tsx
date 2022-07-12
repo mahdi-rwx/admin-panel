@@ -5,11 +5,11 @@ import ListItems from "./components/ListItems";
 import { SidebarContext } from "./context/SidebarContext";
 
 const Sidebar = () => {
-  const { isOpen } = useContext(SidebarContext);
+  const { isOpenSidebar } = useContext(SidebarContext);
   return (
     <div
       className="sidebar h-screen overflow-y-auto overflow-x-hidden inline-block bg-slate-800 fixed z-50 transition-all"
-      style={{ width: `${isOpen ? "250px" : "90px"}` }}
+      style={{ width: `${isOpenSidebar ? "250px" : "90px"}` }}
     >
       <HeadSidebar />
       <div className="list">

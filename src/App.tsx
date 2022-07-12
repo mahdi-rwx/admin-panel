@@ -6,11 +6,11 @@ import { SidebarProvider } from "./components/sidebar/context/SidebarContext";
 import useToggle from "./hooks/useToggle";
 const Main = lazy(() => import("./screens/main/Main"));
 const App = () => {
-  const { state: isOpen, toggle } = useToggle();
+  const { state: isOpenSidebar, toggle:toggleSidebar,close:closeSidebar,open:openSidebar } = useToggle();
 
   return (
     <div className="wrapper max-w-7xl">
-      <SidebarProvider values={{ isOpen, toggle }}>
+      <SidebarProvider values={{ isOpenSidebar, toggleSidebar,closeSidebar,openSidebar }}>
         <Sidebar />
         <Routes>
           <Route path="/">
