@@ -4,6 +4,10 @@ export interface IContextValues {
   toggleSidebar: () => void;
   closeSidebar: () => void;
   openSidebar: () => void;
+  stateHoverSidebar: boolean;
+  hoverSidebar: () => void;
+  closeHoverSidebar: () => void;
+  openHoverSidebar: () => void;
 }
 interface Props {
   values: IContextValues;
@@ -15,6 +19,10 @@ export const SidebarContext = createContext({
   toggleSidebar: vd,
   closeSidebar: vd,
   openSidebar: vd,
+  stateHoverSidebar: false,
+  hoverSidebar: vd,
+  closeHoverSidebar: vd,
+  openHoverSidebar: vd,
 } as IContextValues);
 
 export const SidebarProvider = ({ values, children }: Props) => {

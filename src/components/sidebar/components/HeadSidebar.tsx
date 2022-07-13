@@ -4,7 +4,8 @@ import { AiOutlineDoubleRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { SidebarContext } from "../context/SidebarContext";
 const HeadSidebar = () => {
-  const { isOpenSidebar, toggleSidebar } = useContext(SidebarContext);
+  const { isOpenSidebar, toggleSidebar, stateHoverSidebar } =
+    useContext(SidebarContext);
   return (
     <Fragment>
       <div className="head py-5 flex justify-between px-6">
@@ -15,6 +16,7 @@ const HeadSidebar = () => {
           onClick={toggleSidebar}
           className={classNames("transition-transform", {
             "rotate-180": isOpenSidebar,
+            invisible: !stateHoverSidebar && !isOpenSidebar,
           })}
         >
           <AiOutlineDoubleRight color="#fff" />
