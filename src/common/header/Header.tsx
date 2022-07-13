@@ -1,12 +1,7 @@
 import { useContext } from "react";
-import {
-  AiOutlineFontSize,
-  AiOutlineGlobal,
-  AiOutlineMenu,
-  AiOutlineSearch,
-} from "react-icons/ai";
-import { BsArrowsFullscreen, BsFillMoonStarsFill } from "react-icons/bs";
+import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { SidebarContext } from "../../components/sidebar/context/SidebarContext";
+import Actions from "./components/Actions";
 
 const Header = () => {
   const { toggleSidebar } = useContext(SidebarContext);
@@ -25,29 +20,7 @@ const Header = () => {
           </span>
         </div>
       </div>
-      <div className="actions-box md:mr-8">
-        <div className="flex justify-center items-center">
-          <span className="mx-2 cursor-pointer">
-            <AiOutlineGlobal size={"1.4rem"} color={"#626477"} />
-          </span>
-          <span className="mx-2 cursor-pointer">
-            <BsFillMoonStarsFill size={"1.2rem"} color={"#626477"} />
-            {/* BsFillSunFill */}
-          </span>{" "}
-          <span className="mx-2 cursor-pointer">
-            <BsArrowsFullscreen size={"1.2rem"} color={"#626477"} />
-            {/* BsFullscreenExit */}
-          </span>{" "}
-          <span className="mx-2 cursor-pointer">
-            <AiOutlineFontSize size={"1.4rem"} color={"#626477"} />
-          </span>
-          <span className="mx-2 cursor-pointer">
-            <div className="rounded-full w-10 h-10 flex justify-center items-center bg-gray-400">
-              M
-            </div>
-          </span>
-        </div>
-      </div>
+      <Actions />
     </header>
   );
 };

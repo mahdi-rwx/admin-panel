@@ -20,7 +20,7 @@ const App = () => {
   } = useToggle();
 
   return (
-    <div className="wrapper max-w-7xl">
+    <div className="wrapper">
       <SidebarProvider
         values={{
           isOpenSidebar,
