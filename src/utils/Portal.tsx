@@ -6,13 +6,14 @@ interface Props {
   className?: string;
   parent?: HTMLElement;
 }
-const Portal: FC<Props> = ({ className, parent, children }) => {
+const Portal: FC<Props> = ({ children, parent, className }) => {
   const el = useMemo(() => document.createElement("div"), []);
   useEffect(() => {
     const target = (parent && parent.appendChild) ? parent : document.body;
     const classList = ["portal-container"];
-    if (className) className.split(" ").forEach((c) => classList.push(c));
-    classList.forEach((c) => el.classList.add(c));
+    if (className)
+      className.split(" ").forEach((item: string) => classList.push(item));
+    classList.forEach((item: string) => el.classList.add(item));
     target.appendChild(el);
     return () => {
       target.removeChild(el);
