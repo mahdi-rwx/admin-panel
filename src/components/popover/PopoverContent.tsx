@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { Children, cloneElement, FC, useRef } from "react";
 import useOnClickOutside from "../../hooks/useClickOutSide";
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -12,11 +12,19 @@ const PopoverContent: FC<Props> = ({
 }) => {
   const refClosePopover = useRef(null);
   useOnClickOutside(refClosePopover, closePopover);
-  return activePopover ? (
-    <div className="content-popover" ref={refClosePopover}>
-      {children}
-    </div>
-  ) : null;
+  const childNode = Children.map(children, (child: any) => {
+    const clone = cloneElement(child, {
+      closePopover,
+    });
+    return clone;
+  });
+  return (
+    activePopover && (
+      <div className="content-popover" ref={refClosePopover}>
+        {childNode}
+      </div>
+    )
+  );
 };
 
 export default PopoverContent;

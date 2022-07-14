@@ -1,32 +1,8 @@
 import { Fragment, memo } from "react";
-import { AiOutlineFontSize, AiOutlineGlobal } from "react-icons/ai";
+import { AiOutlineFontSize } from "react-icons/ai";
 import { BsArrowsFullscreen, BsFillMoonStarsFill } from "react-icons/bs";
-import Paper from "../../../components/paper/Paper";
-import Popover from "../../../components/popover/Popover";
-import PopoverContent from "../../../components/popover/PopoverContent";
-import PopoverToggle from "../../../components/popover/PopoverToggle";
-const ChangeLanguage = memo(() => {
-  return (
-    <Popover>
-      <PopoverToggle>
-        <span
-          className="mx-2 cursor-pointer"
-          onClick={() => console.log("change language")}
-        >
-          <AiOutlineGlobal size={"1.4rem"} color={"#626477"} />
-        </span>
-      </PopoverToggle>
-      <PopoverContent>
-        <Paper className="absolute left-1/2 top-full -translate-x-1/2 w-28">
-          <ul>
-            <li>English</li>
-            <li>Persion</li>
-          </ul>
-        </Paper>
-      </PopoverContent>
-    </Popover>
-  );
-});
+import ChangeLanguage from "./ChangeLanguage";
+
 const Mode = memo(() => {
   return (
     <span className="mx-2 cursor-pointer" onClick={() => console.log("mode")}>
