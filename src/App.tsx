@@ -11,7 +11,7 @@ const App = () => {
     toggle: toggleSidebar,
     close: closeSidebar,
     open: openSidebar,
-  } = useToggle();
+  } = useToggle(true);
   const {
     state: stateHoverSidebar,
     toggle: hoverSidebar,

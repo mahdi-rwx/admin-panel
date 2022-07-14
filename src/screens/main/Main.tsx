@@ -4,7 +4,6 @@ const Main = () => {
   return (
     <Container>
       <h1>main</h1>
-      <button>clickxd</button>
     </Container>
   );
 };
