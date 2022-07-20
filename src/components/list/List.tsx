@@ -5,6 +5,7 @@ interface IData {
   content: string | JSX.Element | JSX.Element[];
   active?: boolean;
   disabled?: boolean;
+  set?: () => void;
 }
 interface Props {
   data: IData[];
@@ -20,6 +21,7 @@ const List: FC<Props> = ({ data, className, classNameItem, hover }) => {
           data.map((item: IData) => {
             return (
               <li
+                onClick={() => item.set && item.set()}
                 className={classNames(
                   classNameItem,
                   "px-4 py-1 border-b border-gray-200 w-full rounded-t-lg select-none",

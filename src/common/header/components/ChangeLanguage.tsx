@@ -5,29 +5,31 @@ import Paper from "../../../components/paper/Paper";
 import Popover from "../../../components/popover/Popover";
 import PopoverContent from "../../../components/popover/PopoverContent";
 import PopoverToggle from "../../../components/popover/PopoverToggle";
+import useLocalStorage from "../../../hooks/useLocalStorage";
 
 const ChangeLanguage = () => {
+  const { storedValue, setValue } = useLocalStorage("lang", "en");
   const data = useMemo(
     () => [
       {
         id: 1,
         content: <span>English</span>,
-        active: true,
+        active: storedValue === "en",
+        set: () => setValue("en"),
       },
       {
         id: 2,
         content: <span>Persion</span>,
+        active: storedValue === "fa",
+        set: () => setValue("fa"),
       },
     ],
-    []
+    [setValue, storedValue]
   );
   return (
     <Popover>
       <PopoverToggle>
-        <span
-          className="mx-2 cursor-pointer"
-          onClick={() => console.log("change language")}
-        >
+        <span className="mx-2 cursor-pointer">
           <AiOutlineGlobal size={"1.4rem"} color={"#626477"} />
         </span>
       </PopoverToggle>
