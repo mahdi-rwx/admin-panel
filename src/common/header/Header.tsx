@@ -1,14 +1,15 @@
 import { useContext } from "react";
 import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { SidebarContext } from "../../components/sidebar/context/SidebarContext";
-// import Translator from "../../utils/Translator";
 import Actions from "./components/Actions";
 import { Translator } from "../../i18n/Translator";
 
 import { langs } from "./i18n/langs";
 const Header = () => {
-  let t = new Translator(langs);
+  const t = new Translator(langs);
+
   const { toggleSidebar } = useContext(SidebarContext);
+
   return (
     <header className="w-100 flex justify-between items-center sticky left-0 top-0 bg-transparent p-4">
       <div className="search-box cursor-pointer">

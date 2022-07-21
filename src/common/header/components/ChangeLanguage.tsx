@@ -1,31 +1,42 @@
-import { useMemo } from "react";
+import { useEffect } from "react";
 import { AiOutlineGlobal } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 import List from "../../../components/list/List";
 import Paper from "../../../components/paper/Paper";
 import Popover from "../../../components/popover/Popover";
 import PopoverContent from "../../../components/popover/PopoverContent";
 import PopoverToggle from "../../../components/popover/PopoverToggle";
 import useLocalStorage from "../../../hooks/useLocalStorage";
+import { set_lang } from "../../../redux/features/multiLang/multiLangSlice";
+import { RootState } from "../../../redux/store";
+import { setLocal } from "../../../utils/LocalStorage";
 
 const ChangeLanguage = () => {
-  const { storedValue, setValue } = useLocalStorage("lang", "en");
-  const data = useMemo(
-    () => [
-      {
-        id: 1,
-        content: <span>English</span>,
-        active: storedValue === "en",
-        set: () => setValue("en"),
+  // const { storedValue, setValue } = useLocalStorage("lang", "en");
+  const { language } = useSelector((state: RootState) => state.language);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setLocal("lang", language);
+  }, [language]);
+
+  const data = [
+    {
+      id: 1,
+      content: <span>English</span>,
+      active: language === "en",
+      set: () => {
+        dispatch(set_lang("en"));
       },
-      {
-        id: 2,
-        content: <span>Persion</span>,
-        active: storedValue === "fa",
-        set: () => setValue("fa"),
+    },
+    {
+      id: 2,
+      content: <span>Persion</span>,
+      active: language === "fa",
+      set: () => {
+        dispatch(set_lang("fa"));
       },
-    ],
-    [setValue, storedValue]
-  );
+    },
+  ];
   return (
     <Popover>
       <PopoverToggle>
