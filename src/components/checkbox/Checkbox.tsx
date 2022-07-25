@@ -29,6 +29,7 @@ interface IInputCheckbox {
   style?: CSS.Properties;
   checked?: boolean;
   setChecked?: Dispatch<SetStateAction<boolean>>;
+  onClick?: () => void;
 }
 const Checkbox: FC<ICheckbox> = ({ children, checked, setChecked }) => {
   const allChildren = Children.map(children, (child: any) => {
@@ -50,22 +51,24 @@ export const InputCheckbox = ({
   className,
   size = "sm",
   style,
+  onClick,
 }: IInputCheckbox) => {
   return (
     <div
       onClick={() => {
+        onClick && onClick();
         if (setChecked) setChecked((state) => !state);
       }}
       style={style}
       className={classNames(
         className,
-        "rounded-sm cursor-pointer border-gray-300 bg-slate-200   transition-colors relative overflow-hidden flex justify-center items-center",
+        "rounded-sm cursor-pointer border-gray-300 bg-slate-200 transition-colors relative overflow-hidden flex justify-center items-center",
         {
           "w-4 h-4": size === "sm",
           "w-6 h-6": size === "md",
           "w-8 h-8": size === "lg",
           "bg-green-500": checked,
-          "hover:bg-transparent hover:border-slate-100 hover:border-2":
+          "hover:bg-transparent hover:border-slate-700 hover:border-2":
             !checked,
         }
       )}
