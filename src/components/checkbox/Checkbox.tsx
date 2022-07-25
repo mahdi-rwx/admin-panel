@@ -2,68 +2,84 @@ import {
   Children,
   cloneElement,
   Dispatch,
+  FC,
+  Fragment,
   ReactNode,
   SetStateAction,
-  useEffect,
-  useState,
 } from "react";
-interface ICheckBox {
-  children: ReactNode;
-}
+import CSS from "csstype";
+
+import { BsCheck2 } from "react-icons/bs";
+import classNames from "classnames";
 interface Props {
   checked: boolean;
   setChecked: Dispatch<SetStateAction<boolean>>;
 }
+interface ICheckbox extends Props {
+  children: ReactNode;
+}
 interface ILabel {
   children: ReactNode;
   setChecked?: Dispatch<SetStateAction<boolean>>;
-  checked?: boolean;
+  className?: string;
 }
-const Checkbox = ({ children }: ICheckBox) => {
-  const [checked, setChecked] = useState(true);
-
+interface IInputCheckbox {
+  size?: "sm" | "md" | "lg";
+  className?: string;
+  style?: CSS.Properties;
+  checked?: boolean;
+  setChecked?: Dispatch<SetStateAction<boolean>>;
+}
+const Checkbox: FC<ICheckbox> = ({ children, checked, setChecked }) => {
   const allChildren = Children.map(children, (child: any) => {
-    if (child.type !== Label && child.type !== InputCheckbox) {
+    if (child.type !== LabelCheckbox && child.type !== InputCheckbox)
       return null;
-    }
+
     const clone = cloneElement(child, {
       checked,
       setChecked,
     });
     return clone;
   });
-  return allChildren;
+  return <Fragment>{allChildren}</Fragment>;
 };
 
-const InputCheckbox = ({ checked, setChecked }: Props) => {
-  const [_checked, _setChecked] = useState<boolean>(!!checked);
-  useEffect(() => {
-    if (!setChecked) {
-      console.warn("single element");
-    }
-  }, [_checked, checked, setChecked]);
+export const InputCheckbox = ({
+  checked,
+  setChecked,
+  className,
+  size = "sm",
+  style,
+}: IInputCheckbox) => {
   return (
-    <input
-      type="checkbox"
-      checked={!setChecked ? _checked : checked}
-      onChange={(e) => {
-        if (setChecked) {
-          setChecked(e.target.checked);
-        }
-        _setChecked(e.target.checked);
+    <div
+      onClick={() => {
+        if (setChecked) setChecked((state) => !state);
       }}
-    />
+      style={style}
+      className={classNames(
+        className,
+        "rounded-sm cursor-pointer border-gray-300 bg-slate-200   transition-colors relative overflow-hidden flex justify-center items-center",
+        {
+          "w-4 h-4": size === "sm",
+          "w-6 h-6": size === "md",
+          "w-8 h-8": size === "lg",
+          "bg-green-500": checked,
+          "hover:bg-transparent hover:border-slate-100 hover:border-2":
+            !checked,
+        }
+      )}
+    >
+      {checked && <BsCheck2 color="#fff" />}
+    </div>
   );
 };
-const Label = ({ setChecked, children }: ILabel) => {
-  if (!setChecked) {
-    throw new Error("single element");
-  }
+export const LabelCheckbox = ({ setChecked, className, children }: ILabel) => {
   return (
     <label
-      style={{ userSelect: "none" }}
+      className={classNames(className, "select-none cursor-pointer")}
       onClick={() => {
-        setChecked((state) => !state);
+        setChecked && setChecked((state) => !state);
       }}
     >
       {children}

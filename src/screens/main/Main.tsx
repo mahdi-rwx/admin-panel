@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   BsChevronLeft,
   BsChevronRight,
@@ -7,6 +7,10 @@ import {
   BsFillDiamondFill,
   BsGripVertical,
 } from "react-icons/bs";
+import Checkbox, {
+  InputCheckbox,
+  LabelCheckbox,
+} from "../../components/checkbox/Checkbox";
 import Combobox from "../../components/combobox/Combobox";
 import ComboboxList from "../../components/combobox/components/ComboboxList";
 import ComboboxToggle from "../../components/combobox/components/ComboboxToggle";
@@ -92,8 +96,8 @@ const Main = () => {
   useEffect(() => {
     sortTypes[currentSort.toLowerCase()].fn(keySort);
   }, [currentSort, keySort, sortTypes]);
-  const {x,y} = useScrollPosition(100,0.5)
-  console.log(y)
+  const { x, y } = useScrollPosition(100, 0.5);
+  // console.log(y);
   return (
     <Container>
       <h1>main</h1>
@@ -186,10 +190,10 @@ const Main = () => {
                 <p>Row Per Page : </p>
                 <Combobox>
                   <ComboboxToggle>
-                  <div className="mr-5 ml-2">10</div>
+                    <div className="mr-5 ml-2">10</div>
                   </ComboboxToggle>
                   <ComboboxList>
-                    <Paper className={`absolute top-${y} left-0 z-50`} >
+                    <Paper className={`absolute top-${y} left-0 z-50`}>
                       <ul className="">
                         <li>1</li>
                         <li>2</li>
@@ -198,7 +202,7 @@ const Main = () => {
                     </Paper>
                   </ComboboxList>
                 </Combobox>
-                
+
                 <p>1-10 of 50</p>
                 <div className="flex items-center mx-4">
                   <span className="mx-2 cursor-pointer">
