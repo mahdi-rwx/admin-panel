@@ -6,7 +6,7 @@ interface Props {
   data: Object[];
 }
 const Tbody: FC<Props> = ({ data }) => {
-  const { filtedData, setTableSelected, tableSelected } =
+  const { setTableSelected, tableSelected, sliceData } =
     useContext(TableContext);
 
   const handleIsChecked = useCallback(
@@ -34,8 +34,8 @@ const Tbody: FC<Props> = ({ data }) => {
   return (
     <tbody>
       {data &&
-        filtedData.length > 0 &&
-        filtedData.map((i: any) => {
+        sliceData.length > 0 &&
+        sliceData.map((i: any) => {
           return (
             <tr
               className="border-b border-b-slate-50 bg-slate-100 hover:bg-slate-300 transition-colors"

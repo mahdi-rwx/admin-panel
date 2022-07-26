@@ -11,11 +11,21 @@ export const TableContext = createContext({
   setCurrentSort: vd,
   keySort: "",
   setKeySort: vd,
-  filtedData: [],
-  setFiltedData: vd,
+  filteredData: [],
+  setFilteredData: vd,
   tableSelected: [],
   setTableSelected: vd,
-  data:[]
+  data: [],
+  currentPage: 1,
+  nextPage: vd,
+  pageNumbers: [],
+  pages: 1,
+  paginate: vd,
+  prevPage: vd,
+  setSearching: vd,
+  sliceData: [],
+  setShowItemsPage:vd,
+  showItemsPage:10
 } as IContextValues);
 
 const TableProvider = ({ values, children }: Props) => {

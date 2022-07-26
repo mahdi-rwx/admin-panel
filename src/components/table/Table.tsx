@@ -12,6 +12,7 @@ import {
   BsFillCaretUpFill,
   BsFillDiamondFill,
 } from "react-icons/bs";
+import usePagination from "../../hooks/usePagination";
 import Tbody from "./components/Tbody";
 import Tfooter from "./components/Tfooter";
 import Thead from "./components/Thead";
@@ -31,8 +32,22 @@ const Table: FC<Props> = ({
   setTableSelected,
 }) => {
   const [currentSort, setCurrentSort] = useState<ISort>("DEFAULT");
-  const [filtedData, setFiltedData] = useState([...data]);
   const [keySort, setKeySort] = useState("");
+
+  const {
+    filteredData,
+    setFilteredData,
+    currentPage,
+    nextPage,
+    pageNumbers,
+    pages,
+    paginate,
+    prevPage,
+    setSearching,
+    sliceData,
+    setShowItemsPage,
+    showItemsPage
+  } = usePagination(data);
 
   const sortUp = useCallback(
     (key: string) => {
@@ -42,9 +57,9 @@ const Table: FC<Props> = ({
           ? a[key].localeCompare(b[key])
           : a[key] - b[key]
       );
-      setFiltedData(sortData);
+      setFilteredData(sortData);
     },
-    [data]
+    [data, setFilteredData]
   );
 
   const sortDown = useCallback(
@@ -55,14 +70,14 @@ const Table: FC<Props> = ({
           ? b[key].localeCompare(a[key])
           : b[key] - a[key]
       );
-      setFiltedData(reverseData);
+      setFilteredData(reverseData);
     },
-    [data]
+    [data, setFilteredData]
   );
 
   const sortDefault = useCallback(() => {
-    setFiltedData([...data]);
-  }, [data]);
+    setFilteredData([...data]);
+  }, [data, setFilteredData]);
 
   const sortTypes: any = useMemo(
     () => ({
@@ -99,11 +114,21 @@ const Table: FC<Props> = ({
         setCurrentSort,
         keySort,
         setKeySort,
-        filtedData,
-        setFiltedData,
+        filteredData,
+        setFilteredData,
         tableSelected,
         setTableSelected,
         data,
+        currentPage,
+        nextPage,
+        pageNumbers,
+        pages,
+        paginate,
+        prevPage,
+        setSearching,
+        sliceData,
+        setShowItemsPage,
+        showItemsPage
       }}
     >
       <div className="flex flex-col">
