@@ -13,7 +13,7 @@ const Container: FC<Props> = ({ children }) => {
   const { width } = useWindowDimensions();
   return (
     <div
-      className="inline-block float-right"
+      className="inline-block float-right px-10"
       style={{
         width: `${
           width > 768
