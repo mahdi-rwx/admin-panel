@@ -1,4 +1,5 @@
 import { FC, useContext, useEffect, useState } from "react";
+import { AiOutlineLine } from "react-icons/ai";
 import { BsGripVertical } from "react-icons/bs";
 import { InputCheckbox } from "../../checkbox/Checkbox";
 import { TableContext } from "../context/TableContext";
@@ -10,7 +11,8 @@ interface Props {
 }
 const Thead: FC<Props> = ({ columns, handleSort, sortTypes }) => {
   const [selectAll, setSelectAll] = useState<boolean>(false);
-  const { currentSort, setKeySort, data, setTableSelected } =
+
+  const { currentSort, setKeySort, data, setTableSelected, tableSelected } =
     useContext(TableContext);
 
   useEffect(() => {
@@ -31,10 +33,18 @@ const Thead: FC<Props> = ({ columns, handleSort, sortTypes }) => {
             if (c.key === "__check__") {
               return (
                 <th key={c.key} scope="col" className="w-10 px-6 py-4">
-                  <InputCheckbox
-                    checked={selectAll}
-                    setChecked={setSelectAll}
-                  />
+                  {tableSelected.length !== data.length ? (
+                    <InputCheckbox
+                      checked={selectAll}
+                      setChecked={setSelectAll}
+                      component={<AiOutlineLine color="#fff" />}
+                    />
+                  ) : (
+                    <InputCheckbox
+                      checked={selectAll}
+                      setChecked={setSelectAll}
+                    />
+                  )}
                 </th>
               );
             }

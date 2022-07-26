@@ -30,6 +30,7 @@ interface IInputCheckbox {
   checked?: boolean;
   setChecked?: Dispatch<SetStateAction<boolean>>;
   onClick?: () => void;
+  component?: JSX.Element;
 }
 const Checkbox: FC<ICheckbox> = ({ children, checked, setChecked }) => {
   const allChildren = Children.map(children, (child: any) => {
@@ -52,6 +53,7 @@ export const InputCheckbox = ({
   size = "sm",
   style,
   onClick,
+  component,
 }: IInputCheckbox) => {
   return (
     <div
@@ -73,7 +75,7 @@ export const InputCheckbox = ({
         }
       )}
     >
-      {checked && <BsCheck2 color="#fff" />}
+      {checked && (component ? component : <BsCheck2 color="#fff" />)}
     </div>
   );
 };
