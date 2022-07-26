@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { FC } from "react";
 interface IData {
   id: number;
-  content: string | JSX.Element | JSX.Element[];
+  content: string | number | JSX.Element | JSX.Element[];
   active?: boolean;
   disabled?: boolean;
   set?: () => void;

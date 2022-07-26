@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Combobox from "../../combobox/Combobox";
 import ComboboxList from "../../combobox/components/ComboboxList";
 import ComboboxToggle from "../../combobox/components/ComboboxToggle";
+import List from "../../list/List";
 import Paper from "../../paper/Paper";
 import { TableContext } from "../context/TableContext";
 
@@ -15,6 +16,28 @@ const Tfooter = () => {
     setShowItemsPage,
     showItemsPage,
   } = useContext(TableContext);
+
+  const showItemsPageList = useMemo(
+    () => [
+      {
+        id: 1,
+        content: 10,
+        active: true,
+        set: () => setShowItemsPage(10),
+      },
+      {
+        id: 2,
+        content: 25,
+        set: () => setShowItemsPage(25),
+      },
+      {
+        id: 3,
+        content: 50,
+        set: () => setShowItemsPage(50),
+      },
+    ],
+    [setShowItemsPage]
+  );
 
   return (
     <div className="footer-table p-4 flex justify-between items-center">
@@ -29,11 +52,7 @@ const Tfooter = () => {
           </ComboboxToggle>
           <ComboboxList>
             <Paper className={`absolute top-${0} left-0 z-50`}>
-              <ul className="">
-                <li onClick={() => setShowItemsPage(10)}>10</li>
-                <li onClick={() => setShowItemsPage(25)}>25</li>
-                <li onClick={() => setShowItemsPage(50)}>50</li>
-              </ul>
+              <List data={showItemsPageList} />
             </Paper>
           </ComboboxList>
         </Combobox>
