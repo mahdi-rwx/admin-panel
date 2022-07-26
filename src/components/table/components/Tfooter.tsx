@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Combobox from "../../combobox/Combobox";
 import ComboboxList from "../../combobox/components/ComboboxList";
