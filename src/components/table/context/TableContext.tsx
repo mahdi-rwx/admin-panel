@@ -25,7 +25,8 @@ export const TableContext = createContext({
   setSearching: vd,
   sliceData: [],
   setShowItemsPage:vd,
-  showItemsPage:10
+  showItemsPage:10,
+  checkbox:false
 } as IContextValues);
 
 const TableProvider = ({ values, children }: Props) => {

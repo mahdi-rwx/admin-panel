@@ -23,6 +23,7 @@ interface Props {
   data: Object[];
   tableSelected: number[];
   setTableSelected: Dispatch<SetStateAction<number[]>>;
+  checkbox:boolean
 }
 
 const Table: FC<Props> = ({
@@ -30,6 +31,7 @@ const Table: FC<Props> = ({
   data,
   tableSelected,
   setTableSelected,
+  checkbox
 }) => {
   const [currentSort, setCurrentSort] = useState<ISort>("DEFAULT");
   const [keySort, setKeySort] = useState("");
@@ -128,7 +130,8 @@ const Table: FC<Props> = ({
         setSearching,
         sliceData,
         setShowItemsPage,
-        showItemsPage
+        showItemsPage,
+        checkbox
       }}
     >
       <div className="flex flex-col">
@@ -143,7 +146,7 @@ const Table: FC<Props> = ({
                   handleSort={handleSort}
                   sortTypes={sortTypes}
                 />
-                <Tbody data={data} />
+                <Tbody data={data} columns={columns} />
               </table>
             </div>
             <Tfooter />

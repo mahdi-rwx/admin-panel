@@ -12,8 +12,14 @@ interface Props {
 const Thead: FC<Props> = ({ columns, handleSort, sortTypes }) => {
   const [selectAll, setSelectAll] = useState<boolean>(false);
 
-  const { currentSort, setKeySort, data, setTableSelected, tableSelected } =
-    useContext(TableContext);
+  const {
+    currentSort,
+    setKeySort,
+    data,
+    setTableSelected,
+    tableSelected,
+    checkbox,
+  } = useContext(TableContext);
 
   useEffect(() => {
     if (selectAll) {
@@ -27,27 +33,22 @@ const Thead: FC<Props> = ({ columns, handleSort, sortTypes }) => {
   return (
     <thead className="border-b bg-slate-500 select-none">
       <tr>
+        {checkbox && (
+          <th scope="col" className="w-10 px-6 py-4">
+            {tableSelected.length !== data.length ? (
+              <InputCheckbox
+                checked={selectAll}
+                setChecked={setSelectAll}
+                component={<AiOutlineLine color="#fff" />}
+              />
+            ) : (
+              <InputCheckbox checked={selectAll} setChecked={setSelectAll} />
+            )}
+          </th>
+        )}
         {columns &&
           columns.length > 0 &&
           columns.map((c: any) => {
-            if (c.key === "__check__") {
-              return (
-                <th key={c.key} scope="col" className="w-10 px-6 py-4">
-                  {tableSelected.length !== data.length ? (
-                    <InputCheckbox
-                      checked={selectAll}
-                      setChecked={setSelectAll}
-                      component={<AiOutlineLine color="#fff" />}
-                    />
-                  ) : (
-                    <InputCheckbox
-                      checked={selectAll}
-                      setChecked={setSelectAll}
-                    />
-                  )}
-                </th>
-              );
-            }
             return (
               <th
                 key={c.key}

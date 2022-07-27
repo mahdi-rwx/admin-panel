@@ -1,11 +1,14 @@
-import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { AiFillEye } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import Checkbox, {
   InputCheckbox,
   LabelCheckbox,
 } from "../../components/checkbox/Checkbox";
+import axios from './../../services/httpService'
+import { signinAdmin } from "../../redux/features/user/signinSlice";
+import { rest } from "../../services/api";
 
 const Signin = () => {
   const [rememberMe, setRememberMe] = useState(false);
@@ -13,24 +16,24 @@ const Signin = () => {
     username: "",
     password: "",
   });
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleChangeForm = (e: ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.currentTarget.name]: e.currentTarget.value });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // dispatch(signinAdmin(form, rememberMe));
     try {
-      axios({
-        url: "http://127.0.0.1:3012/api/admin/signin",
-        method: "post",
-        data: form,
-      })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      axios.post(rest.signin, form).then((res) => {
+        console.log(res);
+        if (rememberMe) {
+          localStorage.setItem("user", res.data.token);
+        }
+        navigate("/");
+      });
     } catch (error) {
       console.log(error);
     }
@@ -40,11 +43,7 @@ const Signin = () => {
       <div className="flex flex-col items-center justify-center">
         <div className="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16">
           <div className="flex font-bold justify-center">
-            <img
-              className="h-20 w-20"
-              src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/avatar.svg"
-              alt="aa"
-            />
+            <img className="h-20 w-20" src="images/avatar.svg" alt="aa" />
           </div>
           <p
             tabIndex={0}

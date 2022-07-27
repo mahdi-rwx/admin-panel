@@ -39,4 +39,5 @@ export interface IContextValues {
   sliceData: Object[];
   setShowItemsPage: Dispatch<SetStateAction<number>>;
   showItemsPage: number;
+  checkbox:boolean
 }

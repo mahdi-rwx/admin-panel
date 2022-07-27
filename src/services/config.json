@@ -1,4 +1,4 @@
 {
-  "localhost": "https://jsonplaceholder.typicode.com",
-  "api": "http://techback.rahkardigital.com/api/admin"
+  "api": "http://techback.rahkardigital.com/api/admin",
+  "local": "http://127.0.0.1:3012/api/admin"
 }

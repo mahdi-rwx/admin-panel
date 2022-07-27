@@ -1,3 +1,4 @@
 export const rest = {
-  getPost: "/posts", // exapmle
+  signin: "/signin",
+  getUser: "/get-users",
 };

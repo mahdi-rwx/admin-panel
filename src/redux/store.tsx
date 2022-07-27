@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import multiLangSlice from "./features/multiLang/multiLangSlice";
+import signinSlice from "./features/user/signinSlice";
 const reducers = {
   language: multiLangSlice,
+  admin: signinSlice,
 };
 export const store = configureStore({
   reducer: reducers,

@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "./config.json";
 
-const axiosInstance = axios.create({ baseURL: config.localhost });
+const axiosInstance = axios.create({ baseURL: config.api });
 
 axiosInstance.interceptors.request.use(
   (onFulfilled) => onFulfilled,
