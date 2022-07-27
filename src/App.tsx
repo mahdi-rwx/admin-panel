@@ -1,45 +1,19 @@
-import { lazy } from "react";
-import "./assets/app.scss";
+import Signin from "./screens/signin/Signin";
 import { Routes, Route } from "react-router-dom";
-import Sidebar from "./components/sidebar/Sidebar";
-import { SidebarProvider } from "./components/sidebar/context/SidebarContext";
-import useToggle from "./hooks/useToggle";
-const Main = lazy(() => import("./screens/main/Main"));
+import MainLayout from "./layout/MainLayout";
+import "./assets/app.scss";
+
 const App = () => {
-  const {
-    state: isOpenSidebar,
-    toggle: toggleSidebar,
-    close: closeSidebar,
-    open: openSidebar,
-  } = useToggle(true);
-  const {
-    state: stateHoverSidebar,
-    toggle: hoverSidebar,
-    close: closeHoverSidebar,
-    open: openHoverSidebar,
-  } = useToggle();
+  const PrivateRoute = () => {
+    return <MainLayout />;
+  };
 
   return (
     <div className="wrapper">
-      <SidebarProvider
-        values={{
-          isOpenSidebar,
-          toggleSidebar,
-          closeSidebar,
-          openSidebar,
-          stateHoverSidebar,
-          hoverSidebar,
-          closeHoverSidebar,
-          openHoverSidebar,
-        }}
-      >
-        <Sidebar />
-        <Routes>
-          <Route path="/">
-            <Route index element={<Main />} />
-          </Route>
-        </Routes>
-      </SidebarProvider>
+      <Routes>
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/" element={<PrivateRoute />} />
+      </Routes>
     </div>
   );
 };
