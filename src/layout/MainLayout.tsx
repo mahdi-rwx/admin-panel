@@ -3,6 +3,7 @@ import { SidebarProvider } from "../components/sidebar/context/SidebarContext";
 import Sidebar from "../components/sidebar/Sidebar";
 import { Routes, Route } from "react-router-dom";
 import useToggle from "../hooks/useToggle";
+import NotFound from "../screens/404/NotFound";
 const Main = lazy(() => import("./../screens/main/Main"));
 
 const MainLayout = () => {
@@ -34,6 +35,7 @@ const MainLayout = () => {
       <Sidebar />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </SidebarProvider>
   );

@@ -32,7 +32,7 @@ const Main = () => {
   // const { x, y } = useScrollPosition(100, 0.5);
   // console.log(y);
 
-  const { data }: any = useDataGetter(rest.getUser, "get", true);
+  const { data }: any = useDataGetter(rest.user.getUser, "get", true);
   const [parseData, setParseData] = useState();
   useEffect(() => {
     if (data && data.length > 0) {

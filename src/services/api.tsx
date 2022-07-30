@@ -1,4 +1,8 @@
 export const rest = {
-  signin: "/signin",
-  getUser: "/get-users",
+  auth: {
+    signin: "/signin",
+  },
+  user: {
+    getUser: "/get-users",
+  },
 };

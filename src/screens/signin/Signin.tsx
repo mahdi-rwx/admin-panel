@@ -6,7 +6,7 @@ import Checkbox, {
   InputCheckbox,
   LabelCheckbox,
 } from "../../components/checkbox/Checkbox";
-import axios from './../../services/httpService'
+import axios from "./../../services/httpService";
 import { signinAdmin } from "../../redux/features/user/signinSlice";
 import { rest } from "../../services/api";
 
@@ -27,7 +27,7 @@ const Signin = () => {
     e.preventDefault();
     // dispatch(signinAdmin(form, rememberMe));
     try {
-      axios.post(rest.signin, form).then((res) => {
+      axios.post(rest.auth.signin, form).then((res) => {
         console.log(res);
         if (rememberMe) {
           localStorage.setItem("user", res.data.token);
