@@ -15,6 +15,20 @@ module.exports = {
         },
       },
     },
+    keyframes: {
+      loading: {
+        "0%  , 100%": {
+          transform: "scale(.6)",
+        },
+        "50%": {
+          transform: "scale(1)",
+        },
+      },
+    },
+    animation: {
+      loading: "loading 1s ease-in-out infinite",
+      loading_delay: "loading 1s ease-in-out .5s infinite",
+    },
   },
   plugins: [],
 };

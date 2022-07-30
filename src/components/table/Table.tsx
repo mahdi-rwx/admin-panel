@@ -13,9 +13,11 @@ import {
   BsFillDiamondFill,
 } from "react-icons/bs";
 import usePagination from "../../hooks/usePagination";
+import Loading from "../loading/Loading";
 import Tbody from "./components/Tbody";
 import Tfooter from "./components/Tfooter";
 import Thead from "./components/Thead";
+import Theader from "./components/Theader";
 import TableProvider from "./context/TableContext";
 import { IColumns, ISort } from "./types";
 interface Props {
@@ -23,7 +25,8 @@ interface Props {
   data: Object[];
   tableSelected: number[];
   setTableSelected: Dispatch<SetStateAction<number[]>>;
-  checkbox:boolean
+  checkbox: boolean;
+  loading?: boolean;
 }
 
 const Table: FC<Props> = ({
@@ -31,7 +34,8 @@ const Table: FC<Props> = ({
   data,
   tableSelected,
   setTableSelected,
-  checkbox
+  checkbox,
+  loading,
 }) => {
   const [currentSort, setCurrentSort] = useState<ISort>("DEFAULT");
   const [keySort, setKeySort] = useState("");
@@ -48,7 +52,7 @@ const Table: FC<Props> = ({
     setSearching,
     sliceData,
     setShowItemsPage,
-    showItemsPage
+    showItemsPage,
   } = usePagination(data);
 
   const sortUp = useCallback(
@@ -131,7 +135,7 @@ const Table: FC<Props> = ({
         sliceData,
         setShowItemsPage,
         showItemsPage,
-        checkbox
+        checkbox,
       }}
     >
       <div className="flex flex-col">
@@ -146,7 +150,11 @@ const Table: FC<Props> = ({
                   handleSort={handleSort}
                   sortTypes={sortTypes}
                 />
-                <Tbody data={data} columns={columns} />
+                {loading ? (
+                  <Loading style={{ display: "table-row" }} />
+                ) : (
+                  <Tbody data={data} columns={columns} />
+                )}
               </table>
             </div>
             <Tfooter />
