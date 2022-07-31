@@ -25,18 +25,18 @@ const Signin = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // dispatch(signinAdmin(form, rememberMe));
-    try {
-      axios.post(rest.auth.signin, form).then((res) => {
-        console.log(res);
-        if (rememberMe) {
-          localStorage.setItem("user", res.data.token);
-        }
-        navigate("/");
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(signinAdmin(form, rememberMe));
+    // try {
+    //   axios.post(rest.auth.signin, form).then((res) => {
+    //     console.log(res);
+    //     if (rememberMe) {
+    //       localStorage.setItem("user", res.data.token);
+    //     }
+    //     navigate("/");
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   return (
     <div className="h-screen bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
