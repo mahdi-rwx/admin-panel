@@ -14,9 +14,9 @@ const Loading: FC<Props> = ({ height, style, className }) => {
       style={{ ...style, height: height ? height : "100%" }}
     >
       <div className="flex">
-        <div className="animate-loading mx-2 w-6 h-6 rounded-full bg-green-600"></div>
-        <div className="animate-loading_delay  mx-2 w-6 h-6 rounded-full bg-green-600"></div>
-        <div className="animate-loading mx-2 w-6 h-6 rounded-full bg-green-600"></div>
+        <span className="animate-loading mx-2 w-6 h-6 rounded-full bg-green-600"></span>
+        <span className="animate-loading_delay  mx-2 w-6 h-6 rounded-full bg-green-600"></span>
+        <span className="animate-loading mx-2 w-6 h-6 rounded-full bg-green-600"></span>
       </div>
     </div>
   );

@@ -1,13 +1,14 @@
 import { FC, useCallback, useContext } from "react";
 import { InputCheckbox } from "../../checkbox/Checkbox";
 import { TableContext } from "../context/TableContext";
+import { IActions } from "../types";
 
 interface Props {
   data: Object[];
   columns: Object[];
 }
 const Tbody: FC<Props> = ({ data, columns }) => {
-  const { setTableSelected, tableSelected, sliceData, checkbox } =
+  const { setTableSelected, tableSelected, sliceData, checkbox, actions } =
     useContext(TableContext);
 
   const handleIsChecked = useCallback(
@@ -60,6 +61,11 @@ const Tbody: FC<Props> = ({ data, columns }) => {
                   </td>
                 );
               })}
+              {actions &&
+                actions.length > 0 &&
+                actions.map((a: IActions, index) => {
+                  return <td key={index}>{a.content(i._id)}</td>;
+                })}
             </tr>
           );
         })}

@@ -19,6 +19,11 @@ export interface ISortTypes {
     fn: () => void;
   };
 }
+export interface IActions {
+  key: String;
+  title: String | JSX.Element;
+  content: any;
+}
 export interface IContextValues {
   currentSort: ISort;
   setCurrentSort: Dispatch<SetStateAction<ISort>>;
@@ -39,5 +44,6 @@ export interface IContextValues {
   sliceData: Object[];
   setShowItemsPage: Dispatch<SetStateAction<number>>;
   showItemsPage: number;
-  checkbox:boolean
+  checkbox: boolean;
+  actions: IActions[] | undefined;
 }

@@ -3,7 +3,7 @@ import { AiOutlineLine } from "react-icons/ai";
 import { BsGripVertical } from "react-icons/bs";
 import { InputCheckbox } from "../../checkbox/Checkbox";
 import { TableContext } from "../context/TableContext";
-import { IColumns } from "../types";
+import { IActions, IColumns } from "../types";
 interface Props {
   columns: IColumns[];
   handleSort: () => void;
@@ -19,14 +19,17 @@ const Thead: FC<Props> = ({ columns, handleSort, sortTypes }) => {
     setTableSelected,
     tableSelected,
     checkbox,
+    actions,
   } = useContext(TableContext);
 
   useEffect(() => {
-    if (selectAll) {
-      const ids = data.map((i: any) => i?.id);
-      setTableSelected([...ids]);
-    } else {
-      setTableSelected([]);
+    if (data && data.length > 0) {
+      if (selectAll) {
+        const ids = data.map((i: any) => i?.id);
+        setTableSelected([...ids]);
+      } else {
+        setTableSelected([]);
+      }
     }
   }, [data, selectAll, setTableSelected]);
 
@@ -67,6 +70,28 @@ const Thead: FC<Props> = ({ columns, handleSort, sortTypes }) => {
                     >
                       {sortTypes[currentSort.toLowerCase()].icon}
                     </span>
+                  </div>
+                  <div>
+                    <span className="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
+                      <BsGripVertical />
+                    </span>
+                  </div>
+                </div>
+              </th>
+            );
+          })}
+        {actions &&
+          actions.length > 0 &&
+          actions.map((a: IActions, index) => {
+            return (
+              <th
+                key={index}
+                scope="col"
+                className="text-sm font-medium text-gray-900 pl-6 py-4 text-left group"
+              >
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <span>{a.title}</span>
                   </div>
                   <div>
                     <span className="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">

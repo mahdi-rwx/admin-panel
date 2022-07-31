@@ -4,7 +4,7 @@ import Signin from "../screens/signin/Signin";
 const AuthLayout = () => {
   return (
     <Routes>
-      <Route path="signin" element={<Signin />} />
+      <Route path="/signin" element={<Signin />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

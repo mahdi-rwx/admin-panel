@@ -14,8 +14,8 @@ const App = () => {
   return (
     <div className="wrapper">
       <Routes>
-        <Route path="/auth" element={<AuthRoute />} />
-        <Route path="/" element={<ProtectRoute />} />
+        <Route path="/auth/*" element={<AuthRoute />} />
+        <Route path="/*" element={<ProtectRoute />} />
       </Routes>
     </div>
   );

@@ -19,7 +19,8 @@ import Tfooter from "./components/Tfooter";
 import Thead from "./components/Thead";
 import Theader from "./components/Theader";
 import TableProvider from "./context/TableContext";
-import { IColumns, ISort } from "./types";
+import { IActions, IColumns, ISort } from "./types";
+
 interface Props {
   columns: IColumns[];
   data: Object[];
@@ -27,6 +28,8 @@ interface Props {
   setTableSelected: Dispatch<SetStateAction<number[]>>;
   checkbox: boolean;
   loading?: boolean;
+  actions?: IActions[];
+  error?: any;
 }
 
 const Table: FC<Props> = ({
@@ -36,6 +39,8 @@ const Table: FC<Props> = ({
   setTableSelected,
   checkbox,
   loading,
+  actions,
+  error,
 }) => {
   const [currentSort, setCurrentSort] = useState<ISort>("DEFAULT");
   const [keySort, setKeySort] = useState("");
@@ -110,9 +115,8 @@ const Table: FC<Props> = ({
   }, [currentSort]);
 
   useEffect(() => {
-    sortTypes[currentSort.toLowerCase()].fn(keySort);
-  }, [currentSort, keySort, sortTypes]);
-
+    data && sortTypes[currentSort.toLowerCase()].fn(keySort);
+  }, [currentSort, data, keySort, sortTypes]);
   return (
     <TableProvider
       values={{
@@ -136,6 +140,7 @@ const Table: FC<Props> = ({
         setShowItemsPage,
         showItemsPage,
         checkbox,
+        actions,
       }}
     >
       <div className="flex flex-col">
@@ -150,6 +155,9 @@ const Table: FC<Props> = ({
                   handleSort={handleSort}
                   sortTypes={sortTypes}
                 />
+                {/* {
+                  error && error
+                } */}
                 {loading ? (
                   <Loading style={{ display: "table-row" }} />
                 ) : (

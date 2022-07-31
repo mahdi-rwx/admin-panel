@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "./config.json";
 
-const axiosInstance = axios.create({ baseURL: config.api });
+const axiosInstance = axios.create({ baseURL: config.local });
 
 axiosInstance.interceptors.request.use(
   (onFulfilled) => onFulfilled,
@@ -11,6 +11,7 @@ axiosInstance.interceptors.request.use(
       onRejected.response.status >= 400 &&
       onRejected.response.status < 500;
     if (!expectedErrors) {
+      console.log('opppps!');
       console.log(onRejected);
     }
     return Promise.reject(onRejected);

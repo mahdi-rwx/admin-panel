@@ -24,7 +24,7 @@ const List: FC<Props> = ({ data, className, classNameItem, hover }) => {
                 onClick={() => item.set && item.set()}
                 className={classNames(
                   classNameItem,
-                  "px-4 py-1 border-b border-gray-200 w-full rounded-t-lg select-none",
+                  "px-4 py-1 border-b border-gray-200 w-full rounded-t-lg select-none cursor-pointer",
                   {
                     "bg-blue-600 text-white": item.active,
                     "text-gray-400 cursor-default": item.disabled,

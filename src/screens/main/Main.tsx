@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { AiOutlineMore } from "react-icons/ai";
 import Container from "../../components/container/Container";
 import Table from "../../components/table/Table";
 import useDataGetter from "../../hooks/useDataGetter";
 import { rest } from "../../services/api";
 import { ToJalali } from "../../utils/changeDate";
+import ActionTable from "./components/ActionTable";
 const Main = () => {
   const [tableSelected, setTableSelected] = useState<number[]>([]);
   const columns = [
@@ -28,11 +30,24 @@ const Main = () => {
       title: "createAt",
     },
   ];
+  const actionsTable = [
+    {
+      key: "action1",
+      title: "actions",
+      content: (id:Number) => {
+        return <ActionTable id={id} />
+      },
+    },
+  ];
 
   // const { x, y } = useScrollPosition(100, 0.5);
   // console.log(y);
 
-  const { data , loading }:any = useDataGetter(rest.user.getUser, "get", true);
+  const { data, loading, error }: any = useDataGetter(
+    rest.user.getUser,
+    "get",
+    true
+  );
   const [parseData, setParseData] = useState();
   useEffect(() => {
     if (data && data.length > 0) {
@@ -57,6 +72,8 @@ const Main = () => {
         setTableSelected={setTableSelected}
         checkbox={true}
         loading={loading}
+        actions={actionsTable}
+        error={error}
       />
     </Container>
   );
