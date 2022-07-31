@@ -32,7 +32,7 @@ const Sidebar = () => {
   };
   return width > 768 ? (
     <div
-      className="sidebar h-screen overflow-y-auto overflow-x-hidden inline-block bg-slate-800 fixed z-50 transition-all select-none"
+      className="sidebar h-screen overflow-y-auto overflow-x-hidden inline-block bg-slate-800 fixed z-40 transition-all select-none"
       style={{ width: `${statusSidebar()}` }}
       onMouseOver={openHoverSidebar}
       onMouseLeave={closeHoverSidebar}

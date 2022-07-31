@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { AiOutlineMore } from "react-icons/ai";
 import Container from "../../components/container/Container";
+import Dialog from "../../components/Dialog/Dialog";
 import Table from "../../components/table/Table";
 import useDataGetter from "../../hooks/useDataGetter";
+import useToggle from "../../hooks/useToggle";
 import { rest } from "../../services/api";
 import { ToJalali } from "../../utils/changeDate";
 import ActionTable from "./components/ActionTable";
@@ -16,6 +18,10 @@ const Main = () => {
     {
       key: "chance",
       title: "chance",
+    },
+    {
+      key: "run",
+      title: "run",
     },
     {
       key: "maxScore",
@@ -34,8 +40,8 @@ const Main = () => {
     {
       key: "action1",
       title: "actions",
-      content: (id:Number) => {
-        return <ActionTable id={id} />
+      content: (id: Number) => {
+        return <ActionTable id={id} />;
       },
     },
   ];
@@ -61,7 +67,7 @@ const Main = () => {
       setParseData(newData);
     }
   }, [data]);
-
+  // const { close, state, toggle } = useToggle(true);
   return (
     <Container>
       <h1>main</h1>
@@ -75,6 +81,9 @@ const Main = () => {
         actions={actionsTable}
         error={error}
       />
+      {/* <Dialog open={state} IsClose={close}>
+        <Dialog.Header>hello header</Dialog.Header>
+      </Dialog> */}
     </Container>
   );
 };
